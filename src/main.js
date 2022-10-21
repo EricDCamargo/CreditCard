@@ -9,7 +9,7 @@ function setCardType(type) {
   const colors = {
     visa: ['#436D99', '#2D57F2'],
     mastercard: ['#DF6F29', '#C69347'],
-    elo: ['#C64747', '#4166A6'],
+    nvidia: ['#51C647', '#000000'],
     default: ['black', 'grey']
   }
 
@@ -47,6 +47,11 @@ const expirationDateMasked = IMask(expirationDate, expirationDatePattern)
 const cardNumber = document.querySelector('#card-number')
 const cardNumberPattern = {
   mask: [
+    {
+      mask: '0000 0000 0000 0000',
+      regex: /^1\d{0,15}/,
+      cardType: 'nvidia'
+    },
     {
       mask: '0000 0000 0000 0000',
       regex: /^4\d{0,15}/,
@@ -87,7 +92,7 @@ cardHolder.addEventListener('input', () => {
   const ccHolder = document.querySelector('.cc-holder .value')
 
   ccHolder.innerText =
-    cardHolder.value.length === 0 ? 'NOME NO CARTÃO' : cardHolder.value
+    cardHolder.value.length === 0 ? 'FULANO DA SILVA' : cardHolder.value
 })
 
 securityCodeMasked.on('accept', () => {
